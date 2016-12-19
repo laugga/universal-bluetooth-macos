@@ -6,6 +6,8 @@
 //  Copyright © 2016 Luis Laugga. All rights reserved.
 //
 
+#import <Foundation/Foundation.h>
+
 //! Project version number for UniversalBluetooth.
 FOUNDATION_EXPORT double UniversalBluetoothVersionNumber;
 
