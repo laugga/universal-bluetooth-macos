@@ -652,7 +652,7 @@
         <scene sceneID="R2V-B0-nI4">
             <objects>
                 <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
-                    <window key="window" title="play-transport-ble-mac" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
+                    <window key="window" title="Start Example (UniversalBluetooth)" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="640" height="640"/>
@@ -678,19 +678,19 @@
                             <scrollView horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SgA-Rz-Kvl">
                                 <rect key="frame" x="0.0" y="0.0" width="541" height="552"/>
                                 <clipView key="contentView" id="trB-Kb-CFm">
-                                    <rect key="frame" x="1" y="1" width="524" height="550"/>
+                                    <rect key="frame" x="1" y="1" width="539" height="550"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textView importsGraphics="NO" usesFontPanel="YES" findStyle="panel" continuousSpellChecking="YES" allowsUndo="YES" usesRuler="YES" allowsNonContiguousLayout="YES" quoteSubstitution="YES" dashSubstitution="YES" spellingCorrection="YES" smartInsertDelete="YES" id="rHa-NX-8Ic">
-                                            <rect key="frame" x="0.0" y="0.0" width="524" height="550"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="539" height="550"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                            <size key="minSize" width="524" height="550"/>
+                                            <size key="minSize" width="539" height="550"/>
                                             <size key="maxSize" width="638" height="10000000"/>
                                             <attributedString key="textStorage">
                                                 <fragment content="TYPE">
                                                     <attributes>
-                                                        <font key="NSFont" size="72" name="Futura-Medium"/>
+                                                        <font key="NSFont" metaFont="system" size="46"/>
                                                         <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                     </attributes>
                                                 </fragment>
@@ -708,7 +708,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="icY-k7-nnT">
-                                    <rect key="frame" x="525" y="1" width="15" height="550"/>
+                                    <rect key="frame" x="524" y="1" width="16" height="550"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>

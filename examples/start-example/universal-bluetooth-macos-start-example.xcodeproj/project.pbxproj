@@ -40,7 +40,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		21DE51841BE7AB5100ECCD0C /* play-transport-ble-mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "play-transport-ble-mac.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		21DE51841BE7AB5100ECCD0C /* Start Example (UniversalBluetooth).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Start Example (UniversalBluetooth).app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		382401191E082BD100588098 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = "universal-bluetooth-macos-start-example/AppDelegate.h"; sourceTree = SOURCE_ROOT; };
 		3824011A1E082BD100588098 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = "universal-bluetooth-macos-start-example/AppDelegate.m"; sourceTree = SOURCE_ROOT; };
 		3824011B1E082BD100588098 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "universal-bluetooth-macos-start-example/Assets.xcassets"; sourceTree = SOURCE_ROOT; };
@@ -76,7 +76,7 @@
 		21DE51531BE771B100ECCD0C /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				21DE51841BE7AB5100ECCD0C /* play-transport-ble-mac.app */,
+				21DE51841BE7AB5100ECCD0C /* Start Example (UniversalBluetooth).app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -132,7 +132,7 @@
 			);
 			name = "universal-bluetooth-macos-start-example";
 			productName = "play-transport-ble-mac";
-			productReference = 21DE51841BE7AB5100ECCD0C /* play-transport-ble-mac.app */;
+			productReference = 21DE51841BE7AB5100ECCD0C /* Start Example (UniversalBluetooth).app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -330,7 +330,7 @@
 				INFOPLIST_FILE = "universal-bluetooth-macos-start-example/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				PRODUCT_NAME = "play-transport-ble-mac";
+				PRODUCT_NAME = "Start Example (UniversalBluetooth)";
 				SDKROOT = macosx;
 			};
 			name = Debug;
@@ -344,7 +344,7 @@
 				INFOPLIST_FILE = "universal-bluetooth-macos-start-example/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.11;
-				PRODUCT_NAME = "play-transport-ble-mac";
+				PRODUCT_NAME = "Start Example (UniversalBluetooth)";
 				SDKROOT = macosx;
 			};
 			name = Release;

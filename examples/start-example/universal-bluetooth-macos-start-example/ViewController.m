@@ -22,7 +22,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    self.textView.string = @"NOT\nCONNECTED";
+    self.textView.string = @"Not connected. Bring the other device closer...";
     self.textView.editable = NO;
 }
 
@@ -48,13 +48,13 @@
 
 - (void)UniversalBluetoothDidConnect:(UniversalBluetooth *)UniversalBluetooth
 {
-    self.textView.string = @"CONNECTED";
+    self.textView.string = @"Connected :)";
     self.textView.editable = YES;
 }
 
 - (void)UniversalBluetoothDidDisconnect:(UniversalBluetooth *)UniversalBluetooth
 {
-    self.textView.string = @"NOT\nCONNECTED";
+    self.textView.string = @"Not connected. Bring the other device closer...";
     self.textView.editable = NO;
 }
 
