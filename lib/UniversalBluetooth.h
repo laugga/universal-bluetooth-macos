@@ -6,8 +6,6 @@
 //  Copyright © 2016 Luis Laugga. All rights reserved.
 //
 
-#import <Cocoa/Cocoa.h>
-
 //! Project version number for UniversalBluetooth.
 FOUNDATION_EXPORT double UniversalBluetoothVersionNumber;
 
