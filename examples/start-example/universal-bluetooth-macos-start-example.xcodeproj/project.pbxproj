@@ -1,0 +1,376 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		382401211E082BD100588098 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 3824011A1E082BD100588098 /* AppDelegate.m */; };
+		382401221E082BD100588098 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 3824011B1E082BD100588098 /* Assets.xcassets */; };
+		382401251E082BD100588098 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 3824011E1E082BD100588098 /* main.m */; };
+		382401261E082BD100588098 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 382401201E082BD100588098 /* ViewController.m */; };
+		3842AA341E082CA600CC5E85 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 3842AA321E082CA600CC5E85 /* Main.storyboard */; };
+		38CDEC711E082E4600BFB372 /* UniversalBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 38CDEC6C1E082E0B00BFB372 /* UniversalBluetooth.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		38CDEC6B1E082E0B00BFB372 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 38CDEC661E082E0A00BFB372 /* universal-bluetooth-macos.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3827FD0C1E0827A400989ABC;
+			remoteInfo = UniversalBluetooth;
+		};
+		38CDEC6D1E082E0B00BFB372 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 38CDEC661E082E0A00BFB372 /* universal-bluetooth-macos.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 3827FD141E0827A400989ABC;
+			remoteInfo = Tests;
+		};
+		38CDEC6F1E082E4300BFB372 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 38CDEC661E082E0A00BFB372 /* universal-bluetooth-macos.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 3827FD0B1E0827A400989ABC;
+			remoteInfo = UniversalBluetooth;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		21DE51841BE7AB5100ECCD0C /* play-transport-ble-mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "play-transport-ble-mac.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		382401191E082BD100588098 /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = "universal-bluetooth-macos-start-example/AppDelegate.h"; sourceTree = SOURCE_ROOT; };
+		3824011A1E082BD100588098 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = "universal-bluetooth-macos-start-example/AppDelegate.m"; sourceTree = SOURCE_ROOT; };
+		3824011B1E082BD100588098 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "universal-bluetooth-macos-start-example/Assets.xcassets"; sourceTree = SOURCE_ROOT; };
+		3824011D1E082BD100588098 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = "universal-bluetooth-macos-start-example/Info.plist"; sourceTree = SOURCE_ROOT; };
+		3824011E1E082BD100588098 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = "universal-bluetooth-macos-start-example/main.m"; sourceTree = SOURCE_ROOT; };
+		3824011F1E082BD100588098 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ViewController.h; path = "universal-bluetooth-macos-start-example/ViewController.h"; sourceTree = SOURCE_ROOT; };
+		382401201E082BD100588098 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ViewController.m; path = "universal-bluetooth-macos-start-example/ViewController.m"; sourceTree = SOURCE_ROOT; };
+		3842AA331E082CA600CC5E85 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "universal-bluetooth-macos-start-example/Base.lproj/Main.storyboard"; sourceTree = SOURCE_ROOT; };
+		38CDEC661E082E0A00BFB372 /* universal-bluetooth-macos.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = "universal-bluetooth-macos.xcodeproj"; path = "../../universal-bluetooth-macos.xcodeproj"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		21DE51811BE7AB5100ECCD0C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				38CDEC711E082E4600BFB372 /* UniversalBluetooth.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		21DE51491BE771B100ECCD0C = {
+			isa = PBXGroup;
+			children = (
+				38CDEC661E082E0A00BFB372 /* universal-bluetooth-macos.xcodeproj */,
+				21DE51851BE7AB5100ECCD0C /* Start Example */,
+				21DE51531BE771B100ECCD0C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		21DE51531BE771B100ECCD0C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				21DE51841BE7AB5100ECCD0C /* play-transport-ble-mac.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		21DE51851BE7AB5100ECCD0C /* Start Example */ = {
+			isa = PBXGroup;
+			children = (
+				382401191E082BD100588098 /* AppDelegate.h */,
+				3824011A1E082BD100588098 /* AppDelegate.m */,
+				3824011B1E082BD100588098 /* Assets.xcassets */,
+				3824011F1E082BD100588098 /* ViewController.h */,
+				382401201E082BD100588098 /* ViewController.m */,
+				3842AA321E082CA600CC5E85 /* Main.storyboard */,
+				21DE51891BE7AB5100ECCD0C /* Supporting Files */,
+			);
+			name = "Start Example";
+			path = "play-transport-ble-mac";
+			sourceTree = "<group>";
+		};
+		21DE51891BE7AB5100ECCD0C /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				3824011D1E082BD100588098 /* Info.plist */,
+				3824011E1E082BD100588098 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		38CDEC671E082E0A00BFB372 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				38CDEC6C1E082E0B00BFB372 /* UniversalBluetooth.framework */,
+				38CDEC6E1E082E0B00BFB372 /* Tests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		21DE51831BE7AB5100ECCD0C /* universal-bluetooth-macos-start-example */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 21DE51A01BE7AB5100ECCD0C /* Build configuration list for PBXNativeTarget "universal-bluetooth-macos-start-example" */;
+			buildPhases = (
+				21DE51801BE7AB5100ECCD0C /* Sources */,
+				21DE51811BE7AB5100ECCD0C /* Frameworks */,
+				21DE51821BE7AB5100ECCD0C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				38CDEC701E082E4300BFB372 /* PBXTargetDependency */,
+			);
+			name = "universal-bluetooth-macos-start-example";
+			productName = "play-transport-ble-mac";
+			productReference = 21DE51841BE7AB5100ECCD0C /* play-transport-ble-mac.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		21DE514A1BE771B100ECCD0C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0810;
+				ORGANIZATIONNAME = "Luis Laugga";
+				TargetAttributes = {
+					21DE51831BE7AB5100ECCD0C = {
+						CreatedOnToolsVersion = 7.1;
+					};
+				};
+			};
+			buildConfigurationList = 21DE514D1BE771B100ECCD0C /* Build configuration list for PBXProject "universal-bluetooth-macos-start-example" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 21DE51491BE771B100ECCD0C;
+			productRefGroup = 21DE51531BE771B100ECCD0C /* Products */;
+			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 38CDEC671E082E0A00BFB372 /* Products */;
+					ProjectRef = 38CDEC661E082E0A00BFB372 /* universal-bluetooth-macos.xcodeproj */;
+				},
+			);
+			projectRoot = "";
+			targets = (
+				21DE51831BE7AB5100ECCD0C /* universal-bluetooth-macos-start-example */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		38CDEC6C1E082E0B00BFB372 /* UniversalBluetooth.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = UniversalBluetooth.framework;
+			remoteRef = 38CDEC6B1E082E0B00BFB372 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		38CDEC6E1E082E0B00BFB372 /* Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = Tests.xctest;
+			remoteRef = 38CDEC6D1E082E0B00BFB372 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
+
+/* Begin PBXResourcesBuildPhase section */
+		21DE51821BE7AB5100ECCD0C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3842AA341E082CA600CC5E85 /* Main.storyboard in Resources */,
+				382401221E082BD100588098 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		21DE51801BE7AB5100ECCD0C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				382401261E082BD100588098 /* ViewController.m in Sources */,
+				382401251E082BD100588098 /* main.m in Sources */,
+				382401211E082BD100588098 /* AppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		38CDEC701E082E4300BFB372 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = UniversalBluetooth;
+			targetProxy = 38CDEC6F1E082E4300BFB372 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		3842AA321E082CA600CC5E85 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				3842AA331E082CA600CC5E85 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		21DE51721BE771B200ECCD0C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.laugga.universal-bluetooth-macos.start-example";
+				SDKROOT = macosx;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		21DE51731BE771B200ECCD0C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.laugga.universal-bluetooth-macos.start-example";
+				SDKROOT = macosx;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		21DE51A11BE7AB5100ECCD0C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "universal-bluetooth-macos-start-example/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_NAME = "play-transport-ble-mac";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		21DE51A21BE7AB5100ECCD0C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "-";
+				COMBINE_HIDPI_IMAGES = YES;
+				INFOPLIST_FILE = "universal-bluetooth-macos-start-example/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				PRODUCT_NAME = "play-transport-ble-mac";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		21DE514D1BE771B100ECCD0C /* Build configuration list for PBXProject "universal-bluetooth-macos-start-example" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				21DE51721BE771B200ECCD0C /* Debug */,
+				21DE51731BE771B200ECCD0C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		21DE51A01BE7AB5100ECCD0C /* Build configuration list for PBXNativeTarget "universal-bluetooth-macos-start-example" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				21DE51A11BE7AB5100ECCD0C /* Debug */,
+				21DE51A21BE7AB5100ECCD0C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 21DE514A1BE771B100ECCD0C /* Project object */;
+}
