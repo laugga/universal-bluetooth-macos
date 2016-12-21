@@ -10,7 +10,7 @@ Initialize and start scanning:
 UniversalBluetooth * universal = [[UniversalBluetooth alloc] init];
 universal.delegate = self;
 
-[universal startScanning];
+[universal start];
 ```
 
 Implement the delegate method, required to receive objects:
@@ -36,6 +36,7 @@ Please have a look at the __Start Example__ (located in /examples/start-example)
 
 Yes. The library is _quite basic_ right now. Here's what's in my head:
 
+* Implement message framing (in order to overcame a low MTU)
 * Support more than 2 devices per session
 * Add support for Swift
 * Pub/Sub
