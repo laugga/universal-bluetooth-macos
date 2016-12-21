@@ -14,6 +14,16 @@
 #define TX_CHARACTERISTIC_UUID @"08590F7E-DB05-467E-8757-72F6FAEB13D4"
 #define RX_CHARACTERISTIC_UUID @"08590F7E-DB05-467E-8757-72F6FAEB13D5"
 
+@interface UniversalBluetooth ()
+
+- (void)startAdvertising;
+- (void)stopAdvertising;
+
+- (void)startScanning;
+- (void)stopScanning;
+
+@end
+
 @implementation UniversalBluetooth
 
 - (instancetype)init
@@ -28,7 +38,7 @@
         self.peripheralManager = peripheralManager;
         
         // Scan for all available CoreBluetooth LE devices
-        CBCentralManager *centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
+        CBCentralManager * centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
         self.centralManager = centralManager;
     }
     
@@ -37,7 +47,7 @@
 
 - (void)startAdvertising
 {
-    [self.peripheralManager startAdvertising:@{ CBAdvertisementDataServiceUUIDsKey : @[[CBUUID UUIDWithString:SERVICE_UUID]], CBAdvertisementDataLocalNameKey:@"universal-ios" }];
+    [self.peripheralManager startAdvertising:@{ CBAdvertisementDataServiceUUIDsKey : @[[CBUUID UUIDWithString:SERVICE_UUID]], CBAdvertisementDataLocalNameKey:@"universal-bluetooth" }];
 }
 
 - (void)stopAdvertising
@@ -56,6 +66,19 @@
     [self.centralManager stopScan];
 }
 
+- (void)start
+{
+    // Scan and advertise simultaneously
+    [self startScanning];
+    [self startAdvertising];
+}
+
+- (void)stop
+{
+    [self stopScanning];
+    [self stopAdvertising];
+}
+
 #pragma mark -
 #pragma mark Read / Write
 
@@ -64,7 +87,8 @@
     NSLog(@"sendObject: %@", object);
     
     NSData * data = [MessagePackPacker pack:object];
-    if (data.length) {
+    if (data.length)
+    {
         [self sendData:data];
     }
 }
@@ -73,11 +97,16 @@
 {
     NSLog(@"sendData: %@", data);
     
-    if (self.peripheral && self.mutableRxCharacteristic) { // Act as central
+    if (self.peripheral && self.rxCharacteristic)
+    {
+        // Act as central
         // IMPORTANT use the RX characteristic of peripheral
         [self.peripheral writeValue:data forCharacteristic:self.rxCharacteristic type:CBCharacteristicWriteWithResponse];
         
-    } else if (self.txCharacteristic) { // Act as peripheral
+    }
+    else if (self.txCharacteristic)
+    {
+        // Act as peripheral
         [self.peripheralManager updateValue:data forCharacteristic:self.mutableTxCharacteristic onSubscribedCentrals:nil];
     }
 }
@@ -86,7 +115,8 @@
 {
     NSLog(@"didReceiveObject: %@", object);
     
-    if ([self.delegate respondsToSelector:@selector(UniversalBluetooth:didReceiveObject:)]) {
+    if ([self.delegate respondsToSelector:@selector(UniversalBluetooth:didReceiveObject:)])
+    {
         [self.delegate UniversalBluetooth:self didReceiveObject:object];
     }
 }
@@ -127,40 +157,47 @@
 }
 
 #pragma mark -
-#pragma mark - CBPeripheralManagerDelegate
+#pragma mark CBPeripheralManagerDelegate
 
 - (void)peripheralManagerDidUpdateState:(CBPeripheralManager *)peripheralManager
 {
     NSLog(@"peripheralManagerDidUpdateState: %@", peripheralManager);
     
     // Determine the state of the peripheral
-    if ([peripheralManager state] == CBCentralManagerStatePoweredOff) {
+    if ([peripheralManager state] == CBCentralManagerStatePoweredOff)
+    {
         NSLog(@"CoreBluetooth BLE hardware is powered off");
     }
-    else if ([peripheralManager state] == CBCentralManagerStateUnauthorized) {
+    else if ([peripheralManager state] == CBCentralManagerStateUnauthorized)
+    {
         NSLog(@"CoreBluetooth BLE state is unauthorized");
     }
-    else if ([peripheralManager state] == CBCentralManagerStateUnknown) {
+    else if ([peripheralManager state] == CBCentralManagerStateUnknown)
+    {
         NSLog(@"CoreBluetooth BLE state is unknown");
     }
-    else if ([peripheralManager state] == CBCentralManagerStateUnsupported) {
+    else if ([peripheralManager state] == CBCentralManagerStateUnsupported)
+    {
         NSLog(@"CoreBluetooth BLE hardware is unsupported on this platform");
     }
-    else if ([peripheralManager state] == CBCentralManagerStatePoweredOn) {
+    else if ([peripheralManager state] == CBCentralManagerStatePoweredOn)
+    {
         NSLog(@"CoreBluetooth BLE hardware is powered on and ready");
         
         // TX CBMutableCharacteristic
-        CBMutableCharacteristic * txCharacteristic = [[CBMutableCharacteristic alloc] initWithType:[CBUUID UUIDWithString:TX_CHARACTERISTIC_UUID] properties:CBCharacteristicPropertyNotify|CBCharacteristicPropertyWrite|CBCharacteristicPropertyRead value:nil permissions:CBAttributePermissionsWriteable|CBAttributePermissionsReadable];
+        CBMutableCharacteristic * mutableTxCharacteristic = [[CBMutableCharacteristic alloc] initWithType:[CBUUID UUIDWithString:TX_CHARACTERISTIC_UUID] properties:CBCharacteristicPropertyNotify|CBCharacteristicPropertyWrite|CBCharacteristicPropertyRead value:nil permissions:CBAttributePermissionsWriteable|CBAttributePermissionsReadable];
         
         // RX CBMutableCharacteristic
-        CBMutableCharacteristic * rxCharacteristic = [[CBMutableCharacteristic alloc] initWithType:[CBUUID UUIDWithString:RX_CHARACTERISTIC_UUID] properties:CBCharacteristicPropertyNotify|CBCharacteristicPropertyWrite|CBCharacteristicPropertyRead value:nil permissions:CBAttributePermissionsWriteable|CBAttributePermissionsReadable];
+        CBMutableCharacteristic * mutableRxCharacteristic = [[CBMutableCharacteristic alloc] initWithType:[CBUUID UUIDWithString:RX_CHARACTERISTIC_UUID] properties:CBCharacteristicPropertyNotify|CBCharacteristicPropertyWrite|CBCharacteristicPropertyRead value:nil permissions:CBAttributePermissionsWriteable|CBAttributePermissionsReadable];
         
         // CBMutableService
         self.service = [[CBMutableService alloc] initWithType:[CBUUID UUIDWithString:SERVICE_UUID] primary:YES];
     
         // Add the characteristic to the service
-        self.service.characteristics = @[txCharacteristic, rxCharacteristic];
-
+        self.service.characteristics = @[mutableTxCharacteristic, mutableRxCharacteristic];
+        self.mutableTxCharacteristic = mutableTxCharacteristic;
+        self.mutableRxCharacteristic = mutableRxCharacteristic;
+        
         // And service to the peripheral manager
         [self.peripheralManager addService:self.service];
     }
@@ -175,9 +212,12 @@
 {
     NSLog(@"peripheralManager:central: %@ didSubscribeToCharacteristic:", central);
     
-    if (self.rxCharacteristic == characteristic) {
+    if (self.rxCharacteristic == characteristic)
+    {
         self.rxCharacteristic = characteristic;
-    } else if (self.txCharacteristic == characteristic) {
+    }
+    else if (self.txCharacteristic == characteristic)
+    {
         self.txCharacteristic = characteristic;
     }
     
@@ -189,9 +229,12 @@
 {
     NSLog(@"peripheralManager:central:didUnsubscribeFromCharacteristic:");
     
-    if (self.rxCharacteristic == characteristic) {
+    if (self.rxCharacteristic == characteristic)
+    {
         self.rxCharacteristic = nil;
-    } else if (self.txCharacteristic == characteristic) {
+    }
+    else if (self.txCharacteristic == characteristic)
+    {
         self.txCharacteristic = nil;
     }
     
@@ -203,11 +246,13 @@
 {
     NSLog(@"peripheralManager: %@ didReceiveWriteRequests: %@", peripheralManager, requests);
     
-    for (CBATTRequest * request in requests) {
+    for (CBATTRequest * request in requests)
+    {
         CBCharacteristic * characteristic = request.characteristic;
         
         NSData * data = request.value;
-        if (data.length) {
+        if (data.length)
+        {
             
             if (characteristic == self.rxCharacteristic)
             {
@@ -221,26 +266,31 @@
 }
 
 #pragma mark -
-#pragma mark - CBCentralManagerDelegate
+#pragma mark CBCentralManagerDelegate
 
 - (void)centralManagerDidUpdateState:(CBCentralManager *)central
 {
     NSLog(@"centralManagerDidUpdateState: %@", central);
     
     // Determine the state of the peripheral
-    if ([central state] == CBCentralManagerStatePoweredOff) {
+    if ([central state] == CBCentralManagerStatePoweredOff)
+    {
         NSLog(@"CoreBluetooth BLE hardware is powered off");
     }
-    else if ([central state] == CBCentralManagerStateUnauthorized) {
+    else if ([central state] == CBCentralManagerStateUnauthorized)
+    {
         NSLog(@"CoreBluetooth BLE state is unauthorized");
     }
-    else if ([central state] == CBCentralManagerStateUnknown) {
+    else if ([central state] == CBCentralManagerStateUnknown)
+    {
         NSLog(@"CoreBluetooth BLE state is unknown");
     }
-    else if ([central state] == CBCentralManagerStateUnsupported) {
+    else if ([central state] == CBCentralManagerStateUnsupported)
+    {
         NSLog(@"CoreBluetooth BLE hardware is unsupported on this platform");
     }
-    else if ([central state] == CBCentralManagerStatePoweredOn) {
+    else if ([central state] == CBCentralManagerStatePoweredOn)
+    {
         NSLog(@"CoreBluetooth BLE hardware is powered on and ready");
     }
 }
@@ -267,10 +317,12 @@
 {
     NSLog(@"centralManager:didDiscoverPeripheral: %@ advertisementData: %@ RSSI: %@", peripheral, advertisementData, RSSI);
     
-    if (RSSI.integerValue > -50) { // TODO low pass filter
+    if (RSSI.integerValue > -80)
+    { // TODO low pass filter
 
-        NSString *localName = [advertisementData objectForKey:CBAdvertisementDataLocalNameKey];
-        if ([localName length] > 0) {
+        NSString * localName = [advertisementData objectForKey:CBAdvertisementDataLocalNameKey];
+        if ([localName length] > 0)
+        {
             NSLog(@"Found the device: %@ RSSI: %@", localName, RSSI);
             [self stopScanning]; // TODO improve
             self.peripheral = peripheral;
@@ -287,13 +339,14 @@
 }
 
 #pragma mark -
-#pragma mark - CBPeripheralDelegate
+#pragma mark CBPeripheralDelegate
 
 - (void)peripheral:(CBPeripheral *)peripheral didDiscoverServices:(NSError *)error
 {
     NSLog(@"peripheral:didDiscoverServices: %@", error);
     
-    for (CBService *service in peripheral.services) {
+    for (CBService *service in peripheral.services)
+    {
         NSLog(@"Discovered service: %@", service.UUID);
         [peripheral discoverCharacteristics:@[[CBUUID UUIDWithString:TX_CHARACTERISTIC_UUID], [CBUUID UUIDWithString:RX_CHARACTERISTIC_UUID]] forService:service];
     }
@@ -304,31 +357,32 @@
     NSLog(@"peripheral:didDiscoverCharacteristicsForService: %@ error: %@", service, error);
     
     // Again, we loop through the array, just in case.
-    for (CBCharacteristic *characteristic in service.characteristics) {
-        
+    for (CBCharacteristic * characteristic in service.characteristics)
+    {
         // And check if it's the right one
-        if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:RX_CHARACTERISTIC_UUID]]) {
-            
+        if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:RX_CHARACTERISTIC_UUID]])
+        {
+            // ACT AS CENTRAL
+            // Peripheral's RX is Central's TX
             self.rxCharacteristic = characteristic;
             
-            self.mutableRxCharacteristic = characteristic;
-            
-            if (self.txCharacteristic) {
+            if (self.txCharacteristic)
+            {
                 [self didConnect];
             }
         }
         
-        if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:TX_CHARACTERISTIC_UUID]]) {
-            
+        if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:TX_CHARACTERISTIC_UUID]])
+        {
             self.txCharacteristic = characteristic;
-            self.mutableTxCharacteristic = characteristic;
             
             // ACT AS CENTRAL
             // Relative to PERIPHERAL - Subscribe to TX - If it is, subscribe to it
-            // Peripheral's TX is our RX
+            // Peripheral's TX is Central's RX
             [peripheral setNotifyValue:YES forCharacteristic:characteristic];
             
-            if (self.rxCharacteristic) {
+            if (self.rxCharacteristic)
+            {
                 [self didConnect];
             }
         }
@@ -340,7 +394,8 @@
     NSLog(@"peripheral: %@ didUpdateValueForCharacteristic: %@ error: %@", peripheral, characteristic, error);
     
     NSData * data = characteristic.value;
-    if (data.length) {
+    if (data.length)
+    {
         [self didReceiveData:data];
     }
     
@@ -364,10 +419,12 @@
 {
     NSLog(@"peripheralDidUpdateRSSI: %@ error: %@", peripheral, error);
     
-    if (peripheral.RSSI) {
+    if (peripheral.RSSI)
+    {
         [self updateFilteredRSSI:peripheral.RSSI.doubleValue];
         
-        if ([self.delegate respondsToSelector:@selector(UniversalBluetooth:didUpdateRSSI:)]) {
+        if ([self.delegate respondsToSelector:@selector(UniversalBluetooth:didUpdateRSSI:)])
+        {
             [self.delegate UniversalBluetooth:self didUpdateRSSI:@(_filteredRSSI)];
         }
     }

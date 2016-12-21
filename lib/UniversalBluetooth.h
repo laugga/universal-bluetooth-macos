@@ -38,11 +38,8 @@ FOUNDATION_EXPORT const unsigned char UniversalBluetoothVersionString[];
 
 @property (nonatomic, weak) id<UniversalBluetoothDelegate> delegate;
 
-- (void)startAdvertising;
-- (void)stopAdvertising;
-
-- (void)startScanning;
-- (void)stopScanning;
+- (void)start;
+- (void)stop;
 
 - (void)sendObject:(NSDictionary *)object;
 
