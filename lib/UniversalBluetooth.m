@@ -34,8 +34,8 @@
         _filteredRSSI = -100.0;
         
         // Advertise
-        CBPeripheralManager * peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:nil];
-        self.peripheralManager = peripheralManager;
+        //CBPeripheralManager * peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:nil];
+        //self.peripheralManager = peripheralManager;
         
         // Scan for all available CoreBluetooth LE devices
         CBCentralManager * centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
@@ -104,7 +104,7 @@
         [self.peripheral writeValue:data forCharacteristic:self.rxCharacteristic type:CBCharacteristicWriteWithResponse];
         
     }
-    else if (self.txCharacteristic)
+    else if (self.mutableTxCharacteristic)
     {
         // Act as peripheral
         [self.peripheralManager updateValue:data forCharacteristic:self.mutableTxCharacteristic onSubscribedCentrals:nil];
@@ -126,21 +126,24 @@
     NSLog(@"didReceiveData: %@", data);
     
     NSDictionary * object = [MessagePackParser parseData:data];
-    if (object) {
+    if (object)
+    {
         [self didReceiveObject:object];
     }
 }
 
 - (void)didConnect
 {
-    if ([self.delegate respondsToSelector:@selector(UniversalBluetoothDidConnect:)]) {
+    if ([self.delegate respondsToSelector:@selector(UniversalBluetoothDidConnect:)])
+    {
         [self.delegate UniversalBluetoothDidConnect:self];
     }
 }
 
 - (void)didDisconnect
 {
-    if ([self.delegate respondsToSelector:@selector(UniversalBluetoothDidDisconnect:)]) {
+    if ([self.delegate respondsToSelector:@selector(UniversalBluetoothDidDisconnect:)])
+    {
         [self.delegate UniversalBluetoothDidDisconnect:self];
     }
     
@@ -254,7 +257,7 @@
         if (data.length)
         {
             
-            if (characteristic == self.rxCharacteristic)
+            if (characteristic == self.mutableRxCharacteristic)
             {
                 [self didReceiveData:data];
             }
