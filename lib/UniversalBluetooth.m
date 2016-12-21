@@ -34,8 +34,8 @@
         _filteredRSSI = -100.0;
         
         // Advertise
-        //CBPeripheralManager * peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:nil];
-        //self.peripheralManager = peripheralManager;
+        CBPeripheralManager * peripheralManager = [[CBPeripheralManager alloc] initWithDelegate:self queue:nil];
+        self.peripheralManager = peripheralManager;
         
         // Scan for all available CoreBluetooth LE devices
         CBCentralManager * centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
