@@ -20,21 +20,30 @@ FOUNDATION_EXPORT const unsigned char UniversalBluetoothVersionString[];
 
 @protocol UniversalBluetoothDelegate;
 
+@interface UniversalBluetoothPeripheral: NSObject
+{
+}
+
+@property (nonatomic, strong) CBPeripheral * peripheral;
+
+@property (strong, nonatomic) CBCharacteristic * rxCharacteristic;
+@property (strong, nonatomic) CBCharacteristic * txCharacteristic;
+
+@end
+
 @interface UniversalBluetooth : NSObject <CBPeripheralManagerDelegate, CBCentralManagerDelegate, CBPeripheralDelegate>
 {
     double _filteredRSSI; // Low-pass filter
 }
 
-@property (strong, nonatomic) CBCharacteristic * rxCharacteristic;
 @property (strong, nonatomic) CBMutableCharacteristic * mutableRxCharacteristic;
-@property (strong, nonatomic) CBCharacteristic * txCharacteristic;
 @property (strong, nonatomic) CBMutableCharacteristic * mutableTxCharacteristic;
 @property (strong, nonatomic) CBMutableService * service;
 
 @property (nonatomic, strong) CBCentralManager * centralManager;
 @property (nonatomic, strong) CBPeripheralManager * peripheralManager;
 
-@property (nonatomic, strong) CBPeripheral * peripheral;
+@property (nonatomic, strong) NSMutableSet<UniversalBluetoothPeripheral *> * peripherals;
 
 @property (nonatomic, weak) id<UniversalBluetoothDelegate> delegate;
 
@@ -49,6 +58,8 @@ FOUNDATION_EXPORT const unsigned char UniversalBluetoothVersionString[];
 
 - (void)UniversalBluetoothDidConnect:(UniversalBluetooth *)UniversalBluetooth;
 - (void)UniversalBluetoothDidDisconnect:(UniversalBluetooth *)UniversalBluetooth;
+
+- (void)UniversalBluetoothDidDisconnect:(UniversalBluetooth *)UniversalBluetooth peripheral:(UniversalBluetoothPeripheral *)peripheral;
 
 - (void)UniversalBluetooth:(UniversalBluetooth *)UniversalBluetooth didUpdateRSSI:(NSNumber *)RSSI;
 

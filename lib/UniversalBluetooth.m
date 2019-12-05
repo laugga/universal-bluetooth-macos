@@ -10,9 +10,10 @@
 
 #import "MessagePack.h"
 
-#define SERVICE_UUID @"8ebdb2f3-7817-45c9-95c5-c5e9031aaa47"
-#define TX_CHARACTERISTIC_UUID @"08590F7E-DB05-467E-8757-72F6FAEB13D4"
-#define RX_CHARACTERISTIC_UUID @"08590F7E-DB05-467E-8757-72F6FAEB13D5"
+// Costants
+#define SERVICE_UUID @"6e400001-b5a3-f393-e0a9-e50e24dcca9e"
+#define TX_CHARACTERISTIC_UUID @"6e400002-b5a3-f393-e0a9-e50e24dcca9e"
+#define RX_CHARACTERISTIC_UUID @"6e400003-b5a3-f393-e0a9-e50e24dcca9e"
 
 @interface UniversalBluetooth ()
 
@@ -40,6 +41,9 @@
         // Scan for all available CoreBluetooth LE devices
         CBCentralManager * centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
         self.centralManager = centralManager;
+        
+        // Set peripherals
+        self.peripherals = [[NSMutableSet<UniversalBluetoothPeripheral *> alloc] init];
     }
     
     return self;
@@ -80,6 +84,42 @@
 }
 
 #pragma mark -
+#pragma mark Peripherals
+
+- (nullable UniversalBluetoothPeripheral *)universalPeripheralForPeripheral:(CBPeripheral *)peripheral
+{
+    for(UniversalBluetoothPeripheral * universalPeripheral in self.peripherals) {
+        if(universalPeripheral.peripheral == peripheral) {
+            return universalPeripheral;
+        }
+    }
+    
+    return nil;
+}
+
+- (BOOL)alreadyContains:(CBPeripheral *)peripheral
+{
+    for(UniversalBluetoothPeripheral * universalPeripheral in self.peripherals) {
+        if([universalPeripheral.peripheral.identifier isEqual:peripheral.identifier]) {
+            return YES;
+        }
+    }
+    
+    return NO;
+}
+
+- (nullable UniversalBluetoothPeripheral *)universalPeripheralForCharacteristic:(CBCharacteristic *)characteristic
+{
+    for(UniversalBluetoothPeripheral * universalPeripheral in self.peripherals) {
+        if(universalPeripheral.rxCharacteristic == characteristic || universalPeripheral.txCharacteristic == characteristic) {
+            return universalPeripheral;
+        }
+    }
+    
+    return nil;
+}
+
+#pragma mark -
 #pragma mark Read / Write
 
 - (void)sendObject:(NSDictionary *)object
@@ -97,14 +137,15 @@
 {
     NSLog(@"sendData: %@", data);
     
-    if (self.peripheral && self.rxCharacteristic)
-    {
-        // Act as central
-        // IMPORTANT use the RX characteristic of peripheral
-        [self.peripheral writeValue:data forCharacteristic:self.rxCharacteristic type:CBCharacteristicWriteWithResponse];
-        
+    for(UniversalBluetoothPeripheral * peripheral in self.peripherals) {
+        if (peripheral.peripheral && peripheral.txCharacteristic)
+        {
+            // Act as central
+            [peripheral.peripheral writeValue:data forCharacteristic:peripheral.txCharacteristic type:CBCharacteristicWriteWithResponse];
+        }
     }
-    else if (self.mutableTxCharacteristic)
+    
+    if (self.mutableTxCharacteristic)
     {
         // Act as peripheral
         [self.peripheralManager updateValue:data forCharacteristic:self.mutableTxCharacteristic onSubscribedCentrals:nil];
@@ -215,13 +256,18 @@
 {
     NSLog(@"peripheralManager:central: %@ didSubscribeToCharacteristic:", central);
     
-    if (self.rxCharacteristic == characteristic)
-    {
-        self.rxCharacteristic = characteristic;
+    UniversalBluetoothPeripheral * universalPeripheral = [self universalPeripheralForCharacteristic:characteristic];
+    if(universalPeripheral == nil) {
+        return;
     }
-    else if (self.txCharacteristic == characteristic)
+    
+    if (universalPeripheral.rxCharacteristic == characteristic)
     {
-        self.txCharacteristic = characteristic;
+        universalPeripheral.rxCharacteristic = characteristic;
+    }
+    else if (universalPeripheral.txCharacteristic == characteristic)
+    {
+        universalPeripheral.txCharacteristic = characteristic;
     }
     
     // TODO Improve
@@ -232,17 +278,30 @@
 {
     NSLog(@"peripheralManager:central:didUnsubscribeFromCharacteristic:");
     
-    if (self.rxCharacteristic == characteristic)
-    {
-        self.rxCharacteristic = nil;
-    }
-    else if (self.txCharacteristic == characteristic)
-    {
-        self.txCharacteristic = nil;
+    UniversalBluetoothPeripheral * universalPeripheral = [self universalPeripheralForCharacteristic:characteristic];
+    if(universalPeripheral == nil) {
+        return;
     }
     
-    // TODO Improve
-    [self didDisconnect];
+    if (universalPeripheral.rxCharacteristic == characteristic)
+    {
+        universalPeripheral.rxCharacteristic = nil;
+    }
+    else if (universalPeripheral.txCharacteristic == characteristic)
+    {
+        universalPeripheral.txCharacteristic = nil;
+    }
+    
+    [self.peripherals removeObject:universalPeripheral];
+    if ([self.delegate respondsToSelector:@selector(UniversalBluetoothDidDisconnect:peripheral:)])
+    {
+        [self.delegate UniversalBluetoothDidDisconnect:self peripheral:universalPeripheral];
+    }
+    
+    if(self.peripherals.count == 0)
+    {
+        [self didDisconnect];
+    }
 }
 
 - (void)peripheralManager:(CBPeripheralManager *)peripheralManager didReceiveWriteRequests:(NSArray<CBATTRequest *> *)requests
@@ -302,7 +361,7 @@
 {
     NSLog(@"centralManager:didConnectPeripheral: %@", peripheral);
     
-    [self stopScanning];
+    //[self stopScanning];
     
     // Make sure we get the discovery callbacks
     peripheral.delegate = self;
@@ -320,16 +379,22 @@
 {
     NSLog(@"centralManager:didDiscoverPeripheral: %@ advertisementData: %@ RSSI: %@", peripheral, advertisementData, RSSI);
     
-    if (RSSI.integerValue > -80)
-    { // TODO low pass filter
+    if([self alreadyContains:peripheral] == NO) {
+        if (RSSI.integerValue > -80)
+        { // TODO low pass filter
 
-        NSString * localName = [advertisementData objectForKey:CBAdvertisementDataLocalNameKey];
-        if ([localName length] > 0)
-        {
-            NSLog(@"Found the device: %@ RSSI: %@", localName, RSSI);
-            [self stopScanning]; // TODO improve
-            self.peripheral = peripheral;
-            [self.centralManager connectPeripheral:peripheral options:nil];
+            NSString * localName = [advertisementData objectForKey:CBAdvertisementDataLocalNameKey];
+            if ([localName length] > 0)
+            {
+                NSLog(@"Found the device: %@ RSSI: %@", localName, RSSI);
+                //[self stopScanning]; // TODO improve
+                
+                UniversalBluetoothPeripheral * universalPeripheral = [[UniversalBluetoothPeripheral alloc] init];
+                universalPeripheral.peripheral = peripheral;
+                [self.peripherals addObject:universalPeripheral];
+                
+                [self.centralManager connectPeripheral:peripheral options:nil];
+            }
         }
     }
 }
@@ -338,7 +403,21 @@
 {
     NSLog(@"centralManager:didDisconnectPeripheral:");
     
-    [self didDisconnect];
+    UniversalBluetoothPeripheral * universalPeripheral = [self universalPeripheralForPeripheral:peripheral];
+    if(universalPeripheral == nil) {
+        return;
+    }
+    
+    [self.peripherals removeObject:universalPeripheral];
+    if ([self.delegate respondsToSelector:@selector(UniversalBluetoothDidDisconnect:peripheral:)])
+    {
+        [self.delegate UniversalBluetoothDidDisconnect:self peripheral:universalPeripheral];
+    }
+    
+    if(self.peripherals.count == 0)
+    {
+        [self didDisconnect];
+    }
 }
 
 #pragma mark -
@@ -359,6 +438,11 @@
 {
     NSLog(@"peripheral:didDiscoverCharacteristicsForService: %@ error: %@", service, error);
     
+    UniversalBluetoothPeripheral * universalPeripheral = [self universalPeripheralForPeripheral:peripheral];
+    if(universalPeripheral == nil) {
+        return;
+    }
+    
     // Again, we loop through the array, just in case.
     for (CBCharacteristic * characteristic in service.characteristics)
     {
@@ -367,9 +451,12 @@
         {
             // ACT AS CENTRAL
             // Peripheral's RX is Central's TX
-            self.rxCharacteristic = characteristic;
+            universalPeripheral.rxCharacteristic = characteristic;
             
-            if (self.txCharacteristic)
+            // Subscribe to RX
+            [peripheral setNotifyValue:YES forCharacteristic:characteristic];
+            
+            if (universalPeripheral.txCharacteristic)
             {
                 [self didConnect];
             }
@@ -377,14 +464,9 @@
         
         if ([characteristic.UUID isEqual:[CBUUID UUIDWithString:TX_CHARACTERISTIC_UUID]])
         {
-            self.txCharacteristic = characteristic;
+            universalPeripheral.txCharacteristic = characteristic;
             
-            // ACT AS CENTRAL
-            // Relative to PERIPHERAL - Subscribe to TX - If it is, subscribe to it
-            // Peripheral's TX is Central's RX
-            [peripheral setNotifyValue:YES forCharacteristic:characteristic];
-            
-            if (self.rxCharacteristic)
+            if (universalPeripheral.rxCharacteristic)
             {
                 [self didConnect];
             }
