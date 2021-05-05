@@ -41,7 +41,7 @@ FOUNDATION_EXPORT const unsigned char UniversalBluetoothVersionString[];
 - (void)start;
 - (void)stop;
 
-- (void)sendObject:(NSDictionary *)object;
+- (void)sendString:(NSString *)string;
 
 @end
 
@@ -52,6 +52,6 @@ FOUNDATION_EXPORT const unsigned char UniversalBluetoothVersionString[];
 
 - (void)UniversalBluetooth:(UniversalBluetooth *)UniversalBluetooth didUpdateRSSI:(NSNumber *)RSSI;
 
-- (void)UniversalBluetooth:(UniversalBluetooth *)UniversalBluetooth didReceiveObject:(NSDictionary *)object;
+- (void)UniversalBluetooth:(UniversalBluetooth *)UniversalBluetooth didReceiveString:(NSString *)string;
 
 @end

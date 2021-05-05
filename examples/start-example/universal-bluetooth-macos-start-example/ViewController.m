@@ -63,13 +63,11 @@
     NSLog(@"UniversalBluetooth:didUpdateRSSI: %@", RSSI);
 }
 
-- (void)UniversalBluetooth:(UniversalBluetooth *)UniversalBluetooth didReceiveObject:(NSDictionary *)object
+- (void)UniversalBluetooth:(UniversalBluetooth *)UniversalBluetooth didReceiveString:(NSString *)string
 {
-    NSDictionary * message = object[@"message"];
-    if (message)
+    if (string)
     {
-        NSString * text = message[@"text"];
-        self.textView.string = text;
+        self.textView.string = string;
     }
 }
 
@@ -81,7 +79,7 @@
     NSTextView * textView = [notification object];
     
     dispatch_async(dispatch_get_main_queue(), ^{
-        [self.UniversalBluetooth sendObject:@{@"type":@"message",@"message":@{@"text":textView.string, @"from":@"mac"}}];
+        [self.UniversalBluetooth sendString:textView.string];
     });
 }
 

@@ -8,8 +8,6 @@
 
 #import "UniversalBluetooth.h"
 
-#import "MessagePack.h"
-
 #define SERVICE_UUID @"8ebdb2f3-7817-45c9-95c5-c5e9031aaa47"
 #define TX_CHARACTERISTIC_UUID @"08590F7E-DB05-467E-8757-72F6FAEB13D4"
 #define RX_CHARACTERISTIC_UUID @"08590F7E-DB05-467E-8757-72F6FAEB13D5"
@@ -82,11 +80,11 @@
 #pragma mark -
 #pragma mark Read / Write
 
-- (void)sendObject:(NSDictionary *)object
+- (void)sendString:(NSString *)string
 {
-    NSLog(@"sendObject: %@", object);
+    NSLog(@"sendString: %@", string);
     
-    NSData * data = [MessagePackPacker pack:object];
+    NSData * data = [string dataUsingEncoding:NSUTF8StringEncoding];
     if (data.length)
     {
         [self sendData:data];
@@ -111,13 +109,13 @@
     }
 }
 
-- (void)didReceiveObject:(NSDictionary *)object
+- (void)didReceiveString:(NSString *)string
 {
-    NSLog(@"didReceiveObject: %@", object);
+    NSLog(@"didReceiveString: %@", string);
     
-    if ([self.delegate respondsToSelector:@selector(UniversalBluetooth:didReceiveObject:)])
+    if ([self.delegate respondsToSelector:@selector(UniversalBluetooth:didReceiveString:)])
     {
-        [self.delegate UniversalBluetooth:self didReceiveObject:object];
+        [self.delegate UniversalBluetooth:self didReceiveString:string];
     }
 }
 
@@ -125,10 +123,10 @@
 {
     NSLog(@"didReceiveData: %@", data);
     
-    NSDictionary * object = [MessagePackParser parseData:data];
-    if (object)
+    NSString * string = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
+    if (string)
     {
-        [self didReceiveObject:object];
+        [self didReceiveString:string];
     }
 }
 

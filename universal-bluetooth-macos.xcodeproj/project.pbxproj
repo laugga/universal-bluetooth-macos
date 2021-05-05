@@ -9,17 +9,6 @@
 /* Begin PBXBuildFile section */
 		3827FD151E0827A400989ABC /* UniversalBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3827FD0C1E0827A400989ABC /* UniversalBluetooth.framework */; };
 		3827FD261E08293B00989ABC /* UniversalBluetooth.m in Sources */ = {isa = PBXBuildFile; fileRef = 38610EA31D59F00400569851 /* UniversalBluetooth.m */; };
-		3827FD271E08295300989ABC /* NSArray+MessagePack.m in Sources */ = {isa = PBXBuildFile; fileRef = 3827FCBA1E0825CD00989ABC /* NSArray+MessagePack.m */; };
-		3827FD281E08295300989ABC /* NSData+MessagePack.m in Sources */ = {isa = PBXBuildFile; fileRef = 3827FCBC1E0825CD00989ABC /* NSData+MessagePack.m */; };
-		3827FD291E08295300989ABC /* NSDictionary+MessagePack.m in Sources */ = {isa = PBXBuildFile; fileRef = 3827FCBE1E0825CD00989ABC /* NSDictionary+MessagePack.m */; };
-		3827FD2A1E08295300989ABC /* MessagePackPacker.m in Sources */ = {isa = PBXBuildFile; fileRef = 3827FCAD1E0825C500989ABC /* MessagePackPacker.m */; };
-		3827FD2B1E08295300989ABC /* MessagePackParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 3827FCAF1E0825C500989ABC /* MessagePackParser.m */; };
-		3827FD2C1E08295300989ABC /* MessagePackParser+Streaming.m in Sources */ = {isa = PBXBuildFile; fileRef = 3827FCB11E0825C500989ABC /* MessagePackParser+Streaming.m */; };
-		3827FD2D1E08295B00989ABC /* objectc.c in Sources */ = {isa = PBXBuildFile; fileRef = 3827FCC61E0825DE00989ABC /* objectc.c */; };
-		3827FD2E1E08295B00989ABC /* unpack.c in Sources */ = {isa = PBXBuildFile; fileRef = 3827FCC71E0825DE00989ABC /* unpack.c */; };
-		3827FD2F1E08295B00989ABC /* version.c in Sources */ = {isa = PBXBuildFile; fileRef = 3827FCC81E0825DE00989ABC /* version.c */; };
-		3827FD301E08295B00989ABC /* vrefbuffer.c in Sources */ = {isa = PBXBuildFile; fileRef = 3827FCC91E0825DE00989ABC /* vrefbuffer.c */; };
-		3827FD311E08295B00989ABC /* zone.c in Sources */ = {isa = PBXBuildFile; fileRef = 3827FCCA1E0825DE00989ABC /* zone.c */; };
 		3827FD341E0829E800989ABC /* UniversalBluetoothTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 3827FD321E0829E400989ABC /* UniversalBluetoothTests.m */; };
 		38F859831E082B5F00F69058 /* UniversalBluetooth.h in Headers */ = {isa = PBXBuildFile; fileRef = 3827FD231E0827ED00989ABC /* UniversalBluetooth.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
@@ -36,42 +25,8 @@
 
 /* Begin PBXFileReference section */
 		3827FC9F1E08259000989ABC /* UniversalBluetooth-macOS-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UniversalBluetooth-macOS-Prefix.pch"; path = "support/UniversalBluetooth-macOS-Prefix.pch"; sourceTree = "<group>"; };
-		3827FCAB1E0825C500989ABC /* MessagePack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MessagePack.h; path = deps/msgpack/MessagePack.h; sourceTree = "<group>"; };
-		3827FCAC1E0825C500989ABC /* MessagePackPacker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MessagePackPacker.h; path = deps/msgpack/MessagePackPacker.h; sourceTree = "<group>"; };
-		3827FCAD1E0825C500989ABC /* MessagePackPacker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MessagePackPacker.m; path = deps/msgpack/MessagePackPacker.m; sourceTree = "<group>"; };
-		3827FCAE1E0825C500989ABC /* MessagePackParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MessagePackParser.h; path = deps/msgpack/MessagePackParser.h; sourceTree = "<group>"; };
-		3827FCAF1E0825C500989ABC /* MessagePackParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MessagePackParser.m; path = deps/msgpack/MessagePackParser.m; sourceTree = "<group>"; };
-		3827FCB01E0825C500989ABC /* MessagePackParser+Streaming.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "MessagePackParser+Streaming.h"; path = "deps/msgpack/MessagePackParser+Streaming.h"; sourceTree = "<group>"; };
-		3827FCB11E0825C500989ABC /* MessagePackParser+Streaming.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "MessagePackParser+Streaming.m"; path = "deps/msgpack/MessagePackParser+Streaming.m"; sourceTree = "<group>"; };
-		3827FCB91E0825CD00989ABC /* NSArray+MessagePack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSArray+MessagePack.h"; path = "deps/msgpack/NSArray+MessagePack.h"; sourceTree = "<group>"; };
-		3827FCBA1E0825CD00989ABC /* NSArray+MessagePack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSArray+MessagePack.m"; path = "deps/msgpack/NSArray+MessagePack.m"; sourceTree = "<group>"; };
-		3827FCBB1E0825CD00989ABC /* NSData+MessagePack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSData+MessagePack.h"; path = "deps/msgpack/NSData+MessagePack.h"; sourceTree = "<group>"; };
-		3827FCBC1E0825CD00989ABC /* NSData+MessagePack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSData+MessagePack.m"; path = "deps/msgpack/NSData+MessagePack.m"; sourceTree = "<group>"; };
-		3827FCBD1E0825CD00989ABC /* NSDictionary+MessagePack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSDictionary+MessagePack.h"; path = "deps/msgpack/NSDictionary+MessagePack.h"; sourceTree = "<group>"; };
-		3827FCBE1E0825CD00989ABC /* NSDictionary+MessagePack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSDictionary+MessagePack.m"; path = "deps/msgpack/NSDictionary+MessagePack.m"; sourceTree = "<group>"; };
-		3827FCC51E0825DE00989ABC /* msgpack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = msgpack.h; path = deps/msgpack/msgpack_src/msgpack.h; sourceTree = "<group>"; };
-		3827FCC61E0825DE00989ABC /* objectc.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = objectc.c; path = deps/msgpack/msgpack_src/objectc.c; sourceTree = "<group>"; };
-		3827FCC71E0825DE00989ABC /* unpack.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = unpack.c; path = deps/msgpack/msgpack_src/unpack.c; sourceTree = "<group>"; };
-		3827FCC81E0825DE00989ABC /* version.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = version.c; path = deps/msgpack/msgpack_src/version.c; sourceTree = "<group>"; };
-		3827FCC91E0825DE00989ABC /* vrefbuffer.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = vrefbuffer.c; path = deps/msgpack/msgpack_src/vrefbuffer.c; sourceTree = "<group>"; };
-		3827FCCA1E0825DE00989ABC /* zone.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; name = zone.c; path = deps/msgpack/msgpack_src/zone.c; sourceTree = "<group>"; };
-		3827FCD11E0825E700989ABC /* object.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = object.h; path = deps/msgpack/msgpack_src/msgpack/object.h; sourceTree = "<group>"; };
-		3827FCD21E0825E700989ABC /* pack_define.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = pack_define.h; path = deps/msgpack/msgpack_src/msgpack/pack_define.h; sourceTree = "<group>"; };
-		3827FCD31E0825E700989ABC /* pack_template.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = pack_template.h; path = deps/msgpack/msgpack_src/msgpack/pack_template.h; sourceTree = "<group>"; };
-		3827FCD41E0825E700989ABC /* pack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = pack.h; path = deps/msgpack/msgpack_src/msgpack/pack.h; sourceTree = "<group>"; };
-		3827FCD51E0825E700989ABC /* sbuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sbuffer.h; path = deps/msgpack/msgpack_src/msgpack/sbuffer.h; sourceTree = "<group>"; };
-		3827FCD61E0825E700989ABC /* sysdep.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = sysdep.h; path = deps/msgpack/msgpack_src/msgpack/sysdep.h; sourceTree = "<group>"; };
-		3827FCD71E0825E700989ABC /* unpack_define.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = unpack_define.h; path = deps/msgpack/msgpack_src/msgpack/unpack_define.h; sourceTree = "<group>"; };
-		3827FCD81E0825E700989ABC /* unpack_template.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = unpack_template.h; path = deps/msgpack/msgpack_src/msgpack/unpack_template.h; sourceTree = "<group>"; };
-		3827FCD91E0825E700989ABC /* unpack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = unpack.h; path = deps/msgpack/msgpack_src/msgpack/unpack.h; sourceTree = "<group>"; };
-		3827FCDA1E0825E800989ABC /* version.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = version.h; path = deps/msgpack/msgpack_src/msgpack/version.h; sourceTree = "<group>"; };
-		3827FCDB1E0825E800989ABC /* vrefbuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = vrefbuffer.h; path = deps/msgpack/msgpack_src/msgpack/vrefbuffer.h; sourceTree = "<group>"; };
-		3827FCDC1E0825E800989ABC /* zbuffer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = zbuffer.h; path = deps/msgpack/msgpack_src/msgpack/zbuffer.h; sourceTree = "<group>"; };
-		3827FCDD1E0825E800989ABC /* zone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = zone.h; path = deps/msgpack/msgpack_src/msgpack/zone.h; sourceTree = "<group>"; };
 		3827FD0C1E0827A400989ABC /* UniversalBluetooth.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = UniversalBluetooth.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3827FD141E0827A400989ABC /* Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		3827FD191E0827A400989ABC /* UniversalBluetoothTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = UniversalBluetoothTests.m; sourceTree = "<group>"; };
-		3827FD1B1E0827A400989ABC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		3827FD231E0827ED00989ABC /* UniversalBluetooth.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UniversalBluetooth.h; sourceTree = "<group>"; };
 		3827FD251E0827FF00989ABC /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = support/Info.plist; sourceTree = "<group>"; };
 		3827FD321E0829E400989ABC /* UniversalBluetoothTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UniversalBluetoothTests.m; path = test/UniversalBluetoothTests.m; sourceTree = SOURCE_ROOT; };
@@ -99,68 +54,11 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		3827FD181E0827A400989ABC /* UniversalBluetoothTests */ = {
-			isa = PBXGroup;
-			children = (
-				3827FD191E0827A400989ABC /* UniversalBluetoothTests.m */,
-				3827FD1B1E0827A400989ABC /* Info.plist */,
-			);
-			path = UniversalBluetoothTests;
-			sourceTree = "<group>";
-		};
 		38610EA61D59F28400569851 /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
-				38610EC21D59F2C200569851 /* msgpack-objectivec */,
 			);
 			name = Dependencies;
-			sourceTree = "<group>";
-		};
-		38610EC21D59F2C200569851 /* msgpack-objectivec */ = {
-			isa = PBXGroup;
-			children = (
-				3827FCB91E0825CD00989ABC /* NSArray+MessagePack.h */,
-				3827FCBA1E0825CD00989ABC /* NSArray+MessagePack.m */,
-				3827FCBB1E0825CD00989ABC /* NSData+MessagePack.h */,
-				3827FCBC1E0825CD00989ABC /* NSData+MessagePack.m */,
-				3827FCBD1E0825CD00989ABC /* NSDictionary+MessagePack.h */,
-				3827FCBE1E0825CD00989ABC /* NSDictionary+MessagePack.m */,
-				3827FCAB1E0825C500989ABC /* MessagePack.h */,
-				3827FCAC1E0825C500989ABC /* MessagePackPacker.h */,
-				3827FCAD1E0825C500989ABC /* MessagePackPacker.m */,
-				3827FCAE1E0825C500989ABC /* MessagePackParser.h */,
-				3827FCAF1E0825C500989ABC /* MessagePackParser.m */,
-				3827FCB01E0825C500989ABC /* MessagePackParser+Streaming.h */,
-				3827FCB11E0825C500989ABC /* MessagePackParser+Streaming.m */,
-				38610EC31D59F2D700569851 /* msgpack-c */,
-			);
-			name = "msgpack-objectivec";
-			sourceTree = "<group>";
-		};
-		38610EC31D59F2D700569851 /* msgpack-c */ = {
-			isa = PBXGroup;
-			children = (
-				3827FCD11E0825E700989ABC /* object.h */,
-				3827FCD21E0825E700989ABC /* pack_define.h */,
-				3827FCD31E0825E700989ABC /* pack_template.h */,
-				3827FCD41E0825E700989ABC /* pack.h */,
-				3827FCD51E0825E700989ABC /* sbuffer.h */,
-				3827FCD61E0825E700989ABC /* sysdep.h */,
-				3827FCD71E0825E700989ABC /* unpack_define.h */,
-				3827FCD81E0825E700989ABC /* unpack_template.h */,
-				3827FCD91E0825E700989ABC /* unpack.h */,
-				3827FCDA1E0825E800989ABC /* version.h */,
-				3827FCDB1E0825E800989ABC /* vrefbuffer.h */,
-				3827FCDC1E0825E800989ABC /* zbuffer.h */,
-				3827FCDD1E0825E800989ABC /* zone.h */,
-				3827FCC51E0825DE00989ABC /* msgpack.h */,
-				3827FCC61E0825DE00989ABC /* objectc.c */,
-				3827FCC71E0825DE00989ABC /* unpack.c */,
-				3827FCC81E0825DE00989ABC /* version.c */,
-				3827FCC91E0825DE00989ABC /* vrefbuffer.c */,
-				3827FCCA1E0825DE00989ABC /* zone.c */,
-			);
-			name = "msgpack-c";
 			sourceTree = "<group>";
 		};
 		A01C02691620DF5E003DA76F /* Support */ = {
@@ -195,7 +93,6 @@
 				A01C02691620DF5E003DA76F /* Support */,
 				A039A76D161F8C08009E4C10 /* Test */,
 				38610EA61D59F28400569851 /* Dependencies */,
-				3827FD181E0827A400989ABC /* UniversalBluetoothTests */,
 				A06ACB281608B2C300E20441 /* Frameworks */,
 				A06ACB261608B2C300E20441 /* Products */,
 			);
@@ -306,6 +203,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 			);
 			mainGroup = A06ACB1A1608B2C200E20441;
@@ -341,18 +239,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3827FD2F1E08295B00989ABC /* version.c in Sources */,
 				3827FD261E08293B00989ABC /* UniversalBluetooth.m in Sources */,
-				3827FD271E08295300989ABC /* NSArray+MessagePack.m in Sources */,
-				3827FD311E08295B00989ABC /* zone.c in Sources */,
-				3827FD2A1E08295300989ABC /* MessagePackPacker.m in Sources */,
-				3827FD2E1E08295B00989ABC /* unpack.c in Sources */,
-				3827FD2C1E08295300989ABC /* MessagePackParser+Streaming.m in Sources */,
-				3827FD2D1E08295B00989ABC /* objectc.c in Sources */,
-				3827FD2B1E08295300989ABC /* MessagePackParser.m in Sources */,
-				3827FD281E08295300989ABC /* NSData+MessagePack.m in Sources */,
-				3827FD291E08295300989ABC /* NSDictionary+MessagePack.m in Sources */,
-				3827FD301E08295B00989ABC /* vrefbuffer.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
