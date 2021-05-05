@@ -36,8 +36,8 @@
         self.peripheralManager = peripheralManager;
         
         // Scan for all available CoreBluetooth LE devices
-        CBCentralManager * centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
-        self.centralManager = centralManager;
+        //CBCentralManager * centralManager = [[CBCentralManager alloc] initWithDelegate:self queue:nil];
+        //self.centralManager = centralManager;
     }
     
     return self;
